@@ -6,10 +6,11 @@
 #else
  #include "WProgram.h"
 #endif
+#include <Adafruit_MCP23017.h>
 
-class MAX6675 {
+class MAX6675_MCP {
  public:
-  MAX6675(int8_t SCLK, int8_t CS, int8_t MISO);
+  MAX6675_MCP(Adafruit_MCP23017 &_mcp, int8_t SCLK, int8_t CS, int8_t MISO);
 
   double readCelsius(void);
   double readFahrenheit(void);
@@ -17,5 +18,6 @@ class MAX6675 {
   double readFarenheit(void) { return readFahrenheit(); }
  private:
   int8_t sclk, miso, cs;
+  Adafruit_MCP23017 mcp;
   uint8_t spiread(void);
 };
